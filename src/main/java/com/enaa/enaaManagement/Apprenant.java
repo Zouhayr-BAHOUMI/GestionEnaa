@@ -4,6 +4,7 @@
  */
 package com.enaa.enaaManagement;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -18,15 +19,8 @@ public class Apprenant {
    private int DateNaissance;
    private int numClasse;
    
-        public Apprenant(String n,String p, int t, String ad, int date,int num){
-                    Nom=n;
-                    prenom=p;
-                    tele= t;
-                    addresse=ad;
-                    DateNaissance=date;
-                    numClasse=num;
-        }
-
+      
+ 
     public String getNom() {
         return Nom;
     }
@@ -34,21 +28,19 @@ public class Apprenant {
     public String getPrenom() {
         return prenom;
     }
-
+    
+    public int getTele() {
+        return tele;
+    }
     public String getAddresse() {
         return addresse;
     }
-
-    public int getNumClasse() {
-        return numClasse;
-    }
-
+    
     public int getDateNaissance() {
         return DateNaissance;
     }
-
-    public int getTele() {
-        return tele;
+     public int getNumClasse() {
+        return numClasse;
     }
 
     public void setNom(String Nom) {
@@ -63,12 +55,12 @@ public class Apprenant {
         this.tele = tele;
     }
 
-    public void setDateNaissance(int DateNaissance) {
-        this.DateNaissance = DateNaissance;
-    }
-
     public void setAddresse(String addresse) {
         this.addresse = addresse;
+    }
+    
+    public void setDateNaissance(int DateNaissance) {
+        this.DateNaissance = DateNaissance;
     }
 
     public void setNumClasse(int numClasse) {
@@ -85,7 +77,6 @@ public class Apprenant {
          public void saisirApprenant() { 
             String n,p,ad;
             int date,num,t;
-            Apprenant ap;
             System.out.println(":::::Informations de l'apprenant :::::"); 
             System.out.println("Nom :"); 
             n=clavier();
@@ -105,11 +96,80 @@ public class Apprenant {
             System.out.println("Numero de classe :"); 
             num=Integer.parseInt(clavier());
             setNumClasse(num);
-                    } 
+            
+            }
    @Override
         public String toString(){
              String ch;
-             ch= "Nom :"+Nom+"prenom :"+prenom+"numero de tele :"+tele+"Adresse :"+addresse+"Date de naissance :"+DateNaissance+"N classe"+numClasse;
+             ch= "Nom de l'apprenant est :"+Nom+"\n"+
+                 "prenom de l'apprenant est :"+prenom+"\n"+
+                  "numero de tele de l'apprenant est :"+tele+"\n"+
+                  "Adresse de l'apprenant est :"+addresse+"\n"+
+                  "Date de naissance de l'apprenant est :"+DateNaissance+"\n"+
+                  "N classe de l'apprenant est:"+numClasse+"\n" ;
              return ch;
         }
+        
+        
+        public void ajouterApprenant(ArrayList<Apprenant> ap){
+            ap.add(this);
+            System.out.println("add avec success");
+        }
+        
+        public void afficherApprenant(ArrayList<Apprenant> ap){
+            int M= ap.size();
+            for (int i =0; i<M ; i++){
+            System.out.println(ap.get(i).toString());
+            }
+        }
+        
+        public void modifierApprenant(ArrayList<Apprenant> ap){
+            String nom;
+            String prenom;
+            int M= ap.size();
+            System.out.println("Entrer le nom  que vous modifier");
+            nom = clavier();
+            System.out.println("Entrer le prenom  que vous modifier");
+            prenom = clavier();
+            int existe =0;
+            for (int i =0; i<M ; i++){
+                if (ap.get(i).getNom().equals(nom) && ap.get(i).getPrenom().equals(prenom)){
+                    ap.get(i).saisirApprenant();
+                    existe = 1;
+                    break;
+                }
+            }
+            
+            if (existe == 1) {
+            System.out.println("Modifier avec success.\n");
+            } else {
+            System.out.println("L'apprenant n'existe pas \n");
+            }
+        }
+        
+        public void supprimerApprenant(ArrayList<Apprenant> ap){
+            String nom;
+            String prenom;
+            int M= ap.size();
+            System.out.println("Entrer le nom  que vous supprimer");
+            nom = clavier();
+            System.out.println("Entrer le prenom  que vous supprimer");
+            prenom = clavier();
+            int existe =0;
+            for (int i =0; i<M ; i++){
+                if (ap.get(i).getNom().equals(nom) && ap.get(i).getPrenom().equals(prenom)){
+                    ap.remove(i);
+                    existe = 1;
+                    break;
+                }
+            }
+            
+            if (existe == 1) {
+            System.out.println("supprimer  avec success.\n");
+            } else {
+            System.out.println("L'apprenant n'existe pas \n");
+            }
+        }
+        
+        
 }
