@@ -192,5 +192,45 @@ public class Apprenant {
             }
         }
         
+        public int rechercheApprenant (ArrayList<Apprenant> ap){
+        
+            int m = ap.size();
+            for (int i = 1; i < m ; i++) {
+                Apprenant temp = ap.get(i);
+            int j = i - 1;
+                while (j >= 0 && ap.get(j).getNom().compareTo(temp.getNom()) > 0) {
+                    ap.set(j + 1, ap.get(j));
+                    j--;
+                }
+                ap.set(j + 1, temp);
+            }
+            
+            System.out.print("Enter le nom  recherche : ");
+            String nomRecherche = clavier();
+            System.out.print("Enter le prenom a recherche : ");
+            String prenomRecherche = clavier();
+            int l = 0;
+            int r = ap.size()-1;
+            int mil;
+            
+                while (l <= r){
+                    mil = (l+r)/2;
+                    String milnom     = ap.get(mil).getNom();
+                    String milprenom  = ap.get(mil).getPrenom();
+                    
+                    if(milnom.equals(nomRecherche) && milprenom.equals(prenomRecherche)){
+                      return mil;
+                    } 
+                    if (milnom.compareTo(nomRecherche) < 0 ||
+                       (milnom.equals(nomRecherche) && milprenom.compareTo(prenomRecherche) < 0)){
+                      l = mil + 1;
+                    }else {
+                      r = mil - 1;
+                    }
+                    
+                }
+                return -1;
+        }
+        
         
 }

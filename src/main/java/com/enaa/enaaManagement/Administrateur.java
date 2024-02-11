@@ -59,7 +59,13 @@ public class Administrateur{
                               apprenant.supprimerApprenant(Apprenants);
                               break;
                     case 5:
-                            //rechercheApprenant();
+                              int res = apprenant.rechercheApprenant(Apprenants);
+                              if (res == -1){
+                                System.out.println("Apprenant ne se trouve pas  ");
+                              }else{
+                                System.out.println("Apprenant se trouve a :"+res);
+                                System.out.println(Apprenants.get(res));
+                              }
                               break;
                     case 6:
                             System.out.println("back to menu");
@@ -110,9 +116,9 @@ public class Administrateur{
                 case 4:
                         classe.supprimerClass(Classes);
                           break;
-                case 5:
-                        //affcherApprenantParClasses();
-                          break;
+                case 5: 
+                    classe.afficherApprenantsParClasse(Apprenants);
+                    break;
                 case 6:
                     System.out.println("back to menu");    
                     return;

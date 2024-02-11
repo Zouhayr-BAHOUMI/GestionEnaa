@@ -127,6 +127,27 @@ public class Classe {
             }
         }
         
+        
+        public void afficherApprenantsParClasse(ArrayList<Apprenant> ap){
+           int existe = 0;
+           int M= ap.size();
+           
+           System.out.println("Entrez le numéro de la classe pour afficher les apprenants : ");
+           int numeroClasse = Integer.parseInt(clavier());
+           
+           System.out.println("Apprenants de la classe " + numeroClasse + " est :");
+                for (int i =0; i<M ; i++){
+                     if (ap.get(i).getNumClasse() == numeroClasse){
+                         System.out.println(ap.get(i).toString());
+                         existe = 1;
+                     }
+                 }
+           
+           if(existe != 1)
+             System.out.println("Aucun apprenant trouvé pour cette classe " );
+           
+        }
+        
 
     
 }
