@@ -23,7 +23,9 @@ public class Administrateur{
     }
    
 
-    
+// une fonction qui contient une le menu de gére les apprenants   
+   
+   
    public void gestionApprenants(){
        
        
@@ -38,32 +40,38 @@ public class Administrateur{
             System.out.println("5. Rechercher un  Apprenant ");
             System.out.println("6. Quitter");
             System.out.print("Entrer votre choix: ");
-            choice= cl.nextInt();
+
             Apprenant apprenant = new Apprenant();
-             switch (choice) {
-                case 1:
-                          apprenant.saisirApprenant();
-                          apprenant.ajouterApprenant(Apprenants);
-                          break;
-                case 2:
-                          apprenant.afficherApprenant(Apprenants);
-                          break;
-                case 3:
-                          apprenant.modifierApprenant(Apprenants);
-                          break;
-                case 4:
-                          apprenant.supprimerApprenant(Apprenants);
-                          break;
-                case 5:
-                        //rechercheApprenant();
-                          break;
-                case 6:
-                        System.out.println("Programme terminé.");
-                        System.exit(0);
-                        break;
-                default:
-                        System.out.println("Choix invalide  réessayer.");
+            if(cl.hasNextInt()){
+                choice= cl.nextInt();
+                    switch (choice) {
+                    case 1:
+                              apprenant.saisirApprenant();
+                              apprenant.ajouterApprenant(Apprenants);
+                              break;
+                    case 2:
+                              apprenant.afficherApprenant(Apprenants);
+                              break;
+                    case 3:
+                              apprenant.modifierApprenant(Apprenants);
+                              break;
+                    case 4:
+                              apprenant.supprimerApprenant(Apprenants);
+                              break;
+                    case 5:
+                            //rechercheApprenant();
+                              break;
+                    case 6:
+                            System.out.println("back to menu");
+                            return;
+                    default:
+                            System.out.println("Choix invalide  réessayer.");
+                    }
+            }else{
+                    System.out.println("entrer une nombre.");
+                    cl.next();
             }
+             
         }
 
     }
@@ -84,9 +92,11 @@ public class Administrateur{
             System.out.println("5. Afficher les apprenant par Classe ");
             System.out.println("6. Quitter");
             System.out.print("Entrer votre choix: ");
-            choice= cl.nextInt();
+            
             Classe classe = new Classe ();
-             switch (choice) {
+            if (cl.hasNextInt()){
+                choice= cl.nextInt();
+               switch (choice) {
                 case 1:
                         classe.saisirClasse();
                         classe.ajouterClass(Classes);
@@ -104,12 +114,17 @@ public class Administrateur{
                         //affcherApprenantParClasses();
                           break;
                 case 6:
-                        System.out.println("Programme terminé.");
-                        System.exit(0);
-                        break;
+                    System.out.println("back to menu");    
+                    return;
                 default:
                         System.out.println("Choix invalide  réessayer.");
             }
+            }else{
+               System.out.println("entrer une nombre.");
+               cl.next();
+            }
+            
+             
         }
 
     }
