@@ -32,7 +32,7 @@ public class Main {
                       admin.gestionApprenants();
                 break;
                 case 2:
-                    //admin.gestionClasses();
+                      admin.gestionClasses();
                 break;
                 case 3:
                     System.out.println("Programme terminé.");

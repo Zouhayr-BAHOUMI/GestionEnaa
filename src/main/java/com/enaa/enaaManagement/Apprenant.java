@@ -136,9 +136,12 @@ public class Apprenant {
         
         public void afficherApprenant(ArrayList<Apprenant> ap){
             int M= ap.size();
+            System.out.println("**********************************************************************");
             for (int i =0; i<M ; i++){
             System.out.println(ap.get(i).toString());
+            System.out.println("----------------------------------------------------------------------");
             }
+            System.out.println("**********************************************************************");
         }
         
         public void modifierApprenant(ArrayList<Apprenant> ap){

@@ -15,9 +15,11 @@ public class Administrateur{
  
 
    public ArrayList<Apprenant> Apprenants ; 
+   public ArrayList<Classe> Classes ;
    
    public Administrateur() {
         this.Apprenants = new ArrayList<>();
+        this.Classes = new ArrayList<>();
     }
    
 
@@ -57,6 +59,7 @@ public class Administrateur{
                           break;
                 case 6:
                         System.out.println("Programme terminé.");
+                        System.exit(0);
                         break;
                 default:
                         System.out.println("Choix invalide  réessayer.");
@@ -70,7 +73,7 @@ public class Administrateur{
     
      public void gestionClasses(){
         
-         Scanner cl = new Scanner(System.in) ;
+       Scanner cl = new Scanner(System.in) ;
        int choice ;
        while(true){
             System.out.println("=====Application Enaa Management=====");
@@ -82,24 +85,27 @@ public class Administrateur{
             System.out.println("6. Quitter");
             System.out.print("Entrer votre choix: ");
             choice= cl.nextInt();
+            Classe classe = new Classe ();
              switch (choice) {
                 case 1:
-                        //ajouterClasses();
+                        classe.saisirClasse();
+                        classe.ajouterClass(Classes);
                           break;
                 case 2:
-                        //affcherClasses();
+                        classe.afficherClass(Classes);
                           break;
                 case 3:
-                        //modifierClasse();
+                        classe.modifierClass(Classes);
                           break;
                 case 4:
-                        //supprimerClasse();
+                        classe.supprimerClass(Classes);
                           break;
                 case 5:
                         //affcherApprenantParClasses();
                           break;
                 case 6:
                         System.out.println("Programme terminé.");
+                        System.exit(0);
                         break;
                 default:
                         System.out.println("Choix invalide  réessayer.");
