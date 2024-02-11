@@ -4,6 +4,7 @@
  */
 package com.enaa.enaaManagement;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,9 +15,9 @@ import java.util.Scanner;
 public class Apprenant {
    private String Nom;
    private String prenom;
-   private int tele;
+   private String tele;
    private String addresse;
-   private int DateNaissance;
+   private String DateNaissance;
    private int numClasse;
    
       
@@ -29,14 +30,14 @@ public class Apprenant {
         return prenom;
     }
     
-    public int getTele() {
+    public String getTele() {
         return tele;
     }
     public String getAddresse() {
         return addresse;
     }
     
-    public int getDateNaissance() {
+    public String getDateNaissance() {
         return DateNaissance;
     }
      public int getNumClasse() {
@@ -51,7 +52,7 @@ public class Apprenant {
         this.prenom = prenom;
     }
 
-    public void setTele(int tele) {
+    public void setTele(String tele) {
         this.tele = tele;
     }
 
@@ -59,7 +60,7 @@ public class Apprenant {
         this.addresse = addresse;
     }
     
-    public void setDateNaissance(int DateNaissance) {
+    public void setDateNaissance(String DateNaissance) {
         this.DateNaissance = DateNaissance;
     }
 
@@ -75,8 +76,8 @@ public class Apprenant {
         } 
         
          public void saisirApprenant() { 
-            String n,p,ad;
-            int date,num,t;
+            String n,p,ad,t,date;
+            int num;
             System.out.println(":::::Informations de l'apprenant :::::"); 
             System.out.println("Nom :"); 
             n=clavier();
@@ -85,14 +86,31 @@ public class Apprenant {
             p=clavier();
             setPrenom(p);
             System.out.println("telephone :"); 
-            t=Integer.parseInt(clavier());
+            t=clavier();
+            while (!t.matches("(\\+212|0(6|7))([ \\-_/]*)(\\d[ \\-_/]*){8}")) {
+            System.out.println("Invalid phone number format");
+            t = clavier();
+            }
             setTele(t);
             System.out.println("Adresse :"); 
             ad=clavier();
             setAddresse(ad);
-            System.out.println("Date de naissance :"); 
-            date=Integer.parseInt(clavier());
+            System.out.println("Date de naissance : yyyy-mm-dd"); 
+            date=clavier();
+            String[] tab = date.split("-");
+            LocalDate birthDate = LocalDate.of(Integer.parseInt(tab[0]), Integer.parseInt(tab[1]), Integer.parseInt(tab[2]));
+            if (birthDate.isAfter(LocalDate.now().minusYears(18))){
+                    while (tab.length != 3 || 
+                     ((Integer.parseInt(tab[0]) > 2006) || 
+                    (Integer.parseInt(tab[1]) < 1 || Integer.parseInt(tab[1]) > 12) ||
+                    (Integer.parseInt(tab[2]) < 1 || Integer.parseInt(tab[2]) > 31))) {
+                            System.out.println("Invalid date of birth format or year must be 2006 or later.");
+                            date = clavier();
+                            tab = date.split("-");
+                    }
+            }
             setDateNaissance(date);
+            
             System.out.println("Numero de classe :"); 
             num=Integer.parseInt(clavier());
             setNumClasse(num);
