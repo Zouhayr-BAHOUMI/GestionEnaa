@@ -19,6 +19,8 @@ public class Main {
         
          Administrateur admin = new Administrateur();
          Scanner cl = new Scanner(System.in) ;
+         
+         
        int choix ;
        while(true){
             System.out.println("=====Application Enaa Management=====");

@@ -79,12 +79,23 @@ public class Apprenant {
             String n,p,ad,t,date;
             int num;
             System.out.println(":::::Informations de l'apprenant :::::"); 
-            System.out.println("Nom :"); 
-            n=clavier();
+            do {
+                System.out.println("Nom :"); 
+                n=clavier();
+                if (n.isEmpty()){
+                    System.out.println("Nom doit etre non vide");
+                }
+            }while(n.isEmpty());
             setNom(n);
-            System.out.println("prenom :"); 
-            p=clavier();
+            do {
+                System.out.println("prenom :"); 
+                p=clavier();
+                if (p.isEmpty()){
+                    System.out.println("prenom doit etre non vide");
+                }
+            }while(p.isEmpty());
             setPrenom(p);
+        
             System.out.println("telephone :"); 
             t=clavier();
             while (!t.matches("(\\+212|0(6|7))([ \\-_/]*)(\\d[ \\-_/]*){8}")) {
@@ -131,7 +142,7 @@ public class Apprenant {
         
         public void ajouterApprenant(ArrayList<Apprenant> ap){
             ap.add(this);
-            System.out.println("add avec success");
+            System.out.println("apprenant ajouter avec success");
         }
         
         public void afficherApprenant(ArrayList<Apprenant> ap){
